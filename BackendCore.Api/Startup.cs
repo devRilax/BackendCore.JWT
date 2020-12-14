@@ -1,3 +1,4 @@
+using BackendCore.Api.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
+
 
 namespace BackendCore.Api
 {
@@ -37,6 +40,7 @@ namespace BackendCore.Api
 
             var ok = Configuration["JTW:secretId"];
 
+            
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -83,6 +87,9 @@ namespace BackendCore.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
+            app.UseExceptionMiddleware();
 
             app.UseCors(AllowSpecificOrigin);
             app.UseSwagger();

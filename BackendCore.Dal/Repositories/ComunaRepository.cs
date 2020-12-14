@@ -1,5 +1,7 @@
-﻿using BackendCore.Entity;
+﻿using BackendCore.Dal.EntityModels;
+using BackendCore.Entity;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -70,6 +72,20 @@ namespace BackendCore.Dal.Repositories
             }
 
             return find;
+        }
+
+        //dapper contrib
+        public async Task TestDapperContrib(ComunaEntity entity)
+        {
+            using (var connection = new SqlConnection(this.ConnectionString))
+            {
+                //var insert = await connection.InsertAsync(entity);
+                //var byId = await connection.GetAsync<ComunaEntity>(25);
+                //var all = await connection.GetAllAsync<ComunaEntity>();
+                var updated = await connection.UpdateAsync(new ComunaEntity { Id = 25, Name = "Traiguién modificado" });
+                var ok = false;
+            }
+
         }
     }
 }

@@ -38,7 +38,7 @@ namespace BackendCore.Api.Helpers
                 audience: config["JWT:audience"],
                 claims: tokenClaims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(1)
+                expires: DateTime.UtcNow.AddHours(24)
              );
 
             var successfulToken = new JwtSecurityToken(tokenHeader, tokenPayload);

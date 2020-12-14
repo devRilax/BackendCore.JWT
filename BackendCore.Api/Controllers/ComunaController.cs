@@ -3,6 +3,8 @@ using BackendCore.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System.Threading.Tasks;
 
 namespace BackendCore.Api.Controllers
@@ -12,7 +14,8 @@ namespace BackendCore.Api.Controllers
     [Authorize]
     public class ComunaController : ControllerBase
     {
-     
+
+
         private readonly ComunaBL blComuna;
 
         public ComunaController(IConfiguration config)

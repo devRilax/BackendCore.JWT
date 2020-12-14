@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BackendCore.Common\BackendCore.Common.csproj" />
     <ProjectReference Include="..\BackendCore.Dal\BackendCore.Dal.csproj" />
     <ProjectReference Include="..\BackendCore.Entity\BackendCore.Entity.csproj" />
   </ItemGroup>

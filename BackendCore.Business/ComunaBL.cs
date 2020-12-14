@@ -1,9 +1,11 @@
-﻿using BackendCore.Dal.Repositories;
+﻿using BackendCore.Dal.EntityModels;
+using BackendCore.Dal.Repositories;
 using BackendCore.Entity;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BackendCore.Common.Exceptions;
 
 namespace BackendCore.Business
 {
@@ -19,8 +21,16 @@ namespace BackendCore.Business
 
         public async Task<long> Create(Comuna entity)
         {
-            entity.CreatedAt = DateTime.Now;
-            return await repository.CreateWithSP(entity);
+
+            List<string> errors = new List<string>() { "nombre es requerido", "usuario ya existe", "etc..."  };
+            throw new BusinessException(errors); //prueba excepciones
+
+
+            //entity.CreatedAt = DateTime.Now;
+            //return await repository.CreateWithSP(entity);
+            //await repository.TestDapperContrib(new ComunaEntity() { Name = entity.Name, CreatedAt = DateTime.Now });
+
+            return 10;
         }
 
         public async Task<List<Comuna>> All()
