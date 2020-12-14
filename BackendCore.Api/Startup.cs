@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,11 @@ namespace BackendCore.Api
 
             services.AddMvc();
 
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Servicio de prueba SAG", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +85,11 @@ namespace BackendCore.Api
             }
 
             app.UseCors(AllowSpecificOrigin);
-
+            app.UseSwagger();
+            app.UseSwaggerUI(s => 
+            {
+                s.SwaggerEndpoint("../swagger/v1/swagger.json", "Servicio de prueba SAG");
+            });
 
             app.UseHttpsRedirection();
 
